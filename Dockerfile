@@ -11,6 +11,4 @@ RUN apt-get update && \
     git \
     emacs24-nox
 
-#RUN git clone git@github.com:pnietoiglesias/xensb.git
-
-#WORKDIR xensb
+RUN pip install flask

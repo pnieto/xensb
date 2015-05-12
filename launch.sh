@@ -13,14 +13,14 @@ debug(){
    echo "Debug ${IMAGE}"
    [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
    ssh-add ~/.ssh/pnieto_github
-   docker run -t -i -v $(readlink -f $SSH_AUTH_SOCK):/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent ${IMAGE} /bin/bash
+   docker run -t -i -v $(readlink -f $SSH_AUTH_SOCK):/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent -p 5000:5000 ${IMAGE} /bin/bash
 }
 
 run(){
    echo "Run ${IMAGE}"
    docker kill ${NAME}
    docker rm ${NAME}
-   docker run -t -i --name ${NAME} ${IMAGE}
+   docker run -t -i --name ${NAME} -p 5000:5000 ${IMAGE}
 }
 
 usage(){
