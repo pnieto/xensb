@@ -12,5 +12,10 @@ RUN apt-get update && \
     sqlite \
     emacs24-nox
 
+RUN mkdir /app
+WORKDIR /app
+
 RUN pip install flask
 EXPOSE 5000
+
+ENTRYPOINT ["python xensb.py"]
